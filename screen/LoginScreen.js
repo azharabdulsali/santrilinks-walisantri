@@ -25,7 +25,7 @@ export default LoginScreen = ({navigation}) => {
                 </View>
             </View>
             <View style={styles.containerBawah}>
-            <Pressable style={styles.button} onPress={() => navigation.navigate('Landing')}>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
                 <Text style={styles.textButton}>Masuk</Text>
             </Pressable>
             </View>
@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
     container:{
       flex: 1,
       backgroundColor: "#fff",
+      paddingTop: 44,
     },
     textLogin:{
       color: '#000000',
       fontSize: 24,
       fontFamily: "Poppins-Regular",
       textAlign: "center",
-      marginTop:74+44
+      marginTop:74
     },
     inputText:{
         paddingHorizontal: 20,

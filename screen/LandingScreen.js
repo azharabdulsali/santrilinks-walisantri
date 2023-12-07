@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 44,
   },
   containerAtas: {
-    marginTop: 44+65,
+    marginTop: 65,
     marginLeft:28,
     flex: 1,
     backgroundColor: "#fff",
