@@ -29,8 +29,15 @@ export default HomeScreen = ({navigation}) => {
                         <Text style={styles.textButtonTebakAyat}>Mari tebak ayat</Text>
                     </Pressable>
                     <View style={styles.lingkaran}></View>
+                    <Image source={require('../assets/images/foto-orang.png')} style={styles.fotoOrang}></Image>
                 </View>
                 <View style={styles.viewBawah}>
+                    <View>
+
+                    </View>
+                    <View>
+
+                    </View>
                 </View>
             </View>
         </LinearGradient>
@@ -93,8 +100,9 @@ const styles = StyleSheet.create({
     fotoOrang: {
         width: 194,
         height: 194,
-        // position: "absolute",
-        // right: 10,
-        // top: 10,
+        position: "absolute",
+        right: 10,
+        top: 10,
+        zIndex:4
     },
 });
