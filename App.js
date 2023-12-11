@@ -1,12 +1,7 @@
-import { useFonts } from "expo-font";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Pressable } from "react-native";
 import AppNavigator from "./navigation/AppNavigator";
 
 export default function App() {
-  return(
-    <AppNavigator/>
-  )
+  return <AppNavigator />;
 }
 //   const [fontsLoaded] = useFonts({
 //     // "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
@@ -55,7 +50,7 @@ export default function App() {
 //   text1:{
 //     fontFamily:"ABeeZee-Regular",
 //     fontSize: 48,
-//     color: "#46A175" 
+//     color: "#46A175"
 //   },
 //   viewText2: {
 //     width: 255,

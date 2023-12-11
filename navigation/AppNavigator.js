@@ -1,20 +1,31 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { View, Text } from "react-native";
-import LandingScreen from "../screen/LandingScreen";
-import LoginScreen from "../screen/LoginScreen";
-import HomeScreen from "../screen/HomeScreen";
-const Stack = createNativeStackNavigator();
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AuthNavigator from "./AuthNavigator";
+import BottomTabNavigator from "./BottomTabNavigator";
+import StackNavigator from "./StackNavigator";
 
-export default function AppNavigation () {
+const RootNavigator = createNativeStackNavigator();
+
+export default function AppNavigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Landing' component={LandingScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='Login' component={LoginScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='Home' component={HomeScreen} options={{headerShown: false}}/>
-      </Stack.Navigator>
+      <RootNavigator.Navigator>
+        <RootNavigator.Screen
+          name="Auth"
+          component={AuthNavigator}
+          options={{ headerShown: false }}
+        />
+        <RootNavigator.Screen
+          name="Main"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+        <RootNavigator.Screen
+          name="Stack"
+          component={StackNavigator}
+          options={{ headerShown: false }}
+        />
+      </RootNavigator.Navigator>
     </NavigationContainer>
   );
-};
+}

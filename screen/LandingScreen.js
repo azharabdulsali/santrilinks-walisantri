@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
+
 export default function LandingScreen({navigation}) {
   const [fontsLoaded] = useFonts({
     // "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
