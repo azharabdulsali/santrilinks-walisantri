@@ -1,30 +1,44 @@
 import { NavigationContainer } from "@react-navigation/native";
+import {
+  useFonts,
+  Poppins_600SemiBold,
+  Poppins_500Medium,
+  Poppins_400Regular,
+} from "@expo-google-fonts/poppins";
+import * as SplashScreen from "expo-splash-screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthNavigator from "./AuthNavigator";
+
 import BottomTabNavigator from "./BottomTabNavigator";
 import StackNavigator from "./StackNavigator";
+import { useCallback } from "react";
 
 const RootNavigator = createNativeStackNavigator();
 
+SplashScreen.preventAutoHideAsync();
+
 export default function AppNavigation() {
+  const [loaded] = useFonts({
+    Poppins_600SemiBold,
+    Poppins_500Medium,
+    Poppins_400Regular,
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (loaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  if (!loaded) {
+    return null;
+  }
   return (
-    <NavigationContainer>
-      <RootNavigator.Navigator>
-        <RootNavigator.Screen
-          name="Auth"
-          component={AuthNavigator}
-          options={{ headerShown: false }}
-        />
-        <RootNavigator.Screen
-          name="Main"
-          component={BottomTabNavigator}
-          options={{ headerShown: false }}
-        />
-        <RootNavigator.Screen
-          name="Stack"
-          component={StackNavigator}
-          options={{ headerShown: false }}
-        />
+    <NavigationContainer onReady={onLayoutRootView}>
+      <RootNavigator.Navigator screenOptions={{ headerShown: false }}>
+        <RootNavigator.Screen name="Auth" component={AuthNavigator} />
+        <RootNavigator.Screen name="Main" component={BottomTabNavigator} />
+        <RootNavigator.Screen name="Stack" component={StackNavigator} />
       </RootNavigator.Navigator>
     </NavigationContainer>
   );

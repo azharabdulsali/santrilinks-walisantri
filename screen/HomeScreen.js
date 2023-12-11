@@ -1,18 +1,7 @@
 import { View, Text, Pressable, StyleSheet, Image } from "react-native";
-import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function HomeScreen({ navigation }) {
-  const [fontsLoaded] = useFonts({
-    // "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
-    "Montserrat-SemiBold": require("../assets/fonts/Montserrat-SemiBold.ttf"),
-    // "ABeeZee-Regular": require("../assets/fonts/ABeeZee-Regular.ttf"),
-    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
-    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <Text>Loading...</Text>;
-  }
+export default function HomeScreen() {
   return (
     <LinearGradient
       colors={["#46A175", "#75AA50"]}
@@ -61,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
   },
   text1: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins_500Medium",
     fontSize: 20,
     color: "#fff",
   },
@@ -79,7 +68,7 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   textButtonTebakAyat: {
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins_500Medium",
     fontSize: 12,
     color: "#000000",
   },
