@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 
-export default function LandingScreen() {
+export default function LandingScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.containerAtas}>

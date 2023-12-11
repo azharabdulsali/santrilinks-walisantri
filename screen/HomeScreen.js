@@ -1,13 +1,15 @@
 import { View, Text, Pressable, StyleSheet, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
+import ButtonHomeContent from "../components/ButtonHomeContent";
+import { Colors } from "../constants/colors";
 export default function HomeScreen() {
   return (
     <LinearGradient
       colors={["#46A175", "#75AA50"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <View style={styles.container}>
         <View style={styles.viewAtas}>
           <View style={styles.viewText1}>
@@ -19,11 +21,51 @@ export default function HomeScreen() {
           <View style={styles.lingkaran}></View>
           <Image
             source={require("../assets/images/foto-orang.png")}
-            style={styles.fotoOrang}></Image>
+            style={styles.fotoOrang}
+          ></Image>
         </View>
         <View style={styles.viewBawah}>
-          <View></View>
-          <View></View>
+          <View style={{ flex: 1, flexDirection: "column", marginTop: 43 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                // alignItems: "center",
+              }}
+            >
+                <ButtonHomeContent
+                  color={Colors.greenBg}
+                  shadowColor={Colors.greenSecondary}
+                  text="Setor Hafalan"
+                />
+              <ButtonHomeContent
+                color={Colors.greenSecondary}
+                shadowColor={Colors.greenBg}
+                text="Absensi Santri"
+              />
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                // alignItems: "center",
+              }}
+            >
+              <ButtonHomeContent
+                color={Colors.greenSecondary}
+                shadowColor={Colors.greenBg}
+                text="Point Santri"
+              />
+              <ButtonHomeContent
+                color={Colors.greenBg}
+                shadowColor={Colors.greenSecondary}
+                text="Data Santri"
+              />
+            </View>
+          </View>
+          <View style={{ flex: 1 }}></View>
         </View>
       </View>
     </LinearGradient>

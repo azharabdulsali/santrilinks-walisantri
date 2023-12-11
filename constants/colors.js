@@ -4,4 +4,5 @@ export const Colors = {
   greenPrimary: "#46A175",
   greenBg: "#F2FFE9",
   greyBg: "#EEEEEE",
+  greenSecondary: "#DEFFC9",
 };
