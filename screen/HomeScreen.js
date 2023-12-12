@@ -76,6 +76,7 @@ export default function HomeScreen({ navigation }) {
             hadits="خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ" 
             terjemahan="Sebaik-baik kalian adalah orang yang belajar Al-Qur`an dan mengajarkannya." 
             />
+            {/* Belum dibuat sambungan carousel nya masi sederhana */}
           </View>
         </View>
       </View>
@@ -86,31 +87,32 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 44,
+    paddingTop: screenHeight/812/44,
     paddingBottom: screenHeight/13,
   },
   viewAtas: {
     flex: 1,
+    overflow: "hidden",
   },
   viewBawah: {
-    flex: 2.5,
+    flex: 2.3,
     backgroundColor: "#fff",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
   },
   viewText1: {
-    width: 195,
-    marginLeft: 27,
-    marginTop: 23,
+    width: screenWidth/(375/195),
+    marginLeft: screenWidth/(375/27),
+    marginTop: screenHeight/(812/23),
   },
   text1: {
     fontFamily: "Poppins_500Medium",
-    fontSize: 20,
+    fontSize: screenWidth/(375/20),
     color: "#fff",
   },
   buttonTebakAyat: {
-    marginLeft: 27,
-    marginTop: 36,
+    marginLeft: screenWidth/(375/27),
+    marginTop: screenHeight/(812/36),
     backgroundColor: "#DEFFC9",
     shadowColor: "#666",
     shadowOffset: { width: 0, height: 4 },
@@ -133,16 +135,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#59CD95",
     opacity: 0.12,
     position: "absolute",
-    left: 61,
-    top: 72,
+    left: screenWidth/(375/61),
+    top: screenHeight/(812/72),
     zIndex: 2,
   },
   fotoOrang: {
-    width: 194,
-    height: 194,
+    width: screenWidth/(375/194),
+    height: screenWidth/(375/194),
     position: "absolute",
-    right: 10,
-    top: 10,
+    right: screenWidth/(375/10),
+    top: screenHeight/(812/10),
     zIndex: 4,
   },
   carousel: {
@@ -150,6 +152,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "black",
     justifyContent: "center",
     // alignItems: "center",
+    // marginTop: screenHeight/(812/47),
     paddingHorizontal: screenWidth/(375/37),
     paddingBottom: screenHeight/(812/12),
   }
