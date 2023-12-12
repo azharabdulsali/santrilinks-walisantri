@@ -1,8 +1,10 @@
-import { View, Text, Pressable, StyleSheet, Image } from "react-native";
+import { View, Text, Pressable, StyleSheet, Image, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import ButtonHomeContent from "../components/ButtonHomeContent";
 import { Colors } from "../constants/colors";
-export default function HomeScreen() {
+import { screenWidth, screenHeight } from "../constants/scale";
+import HaditsCarousel from "../components/HaditsCarousel";
+export default function HomeScreen({ navigation }) {
   return (
     <LinearGradient
       colors={["#46A175", "#75AA50"]}
@@ -38,11 +40,13 @@ export default function HomeScreen() {
                   color={Colors.greenBg}
                   shadowColor={Colors.greenSecondary}
                   text="Setor Hafalan"
+                  onPress={() => navigation.replace("Stack", { screen: "SetorHafalan" })}
                 />
               <ButtonHomeContent
                 color={Colors.greenSecondary}
                 shadowColor={Colors.greenBg}
                 text="Absensi Santri"
+                onPress={() => navigation.replace("Stack", { screen: "AbsensiSantri" })}
               />
             </View>
             <View
@@ -57,15 +61,22 @@ export default function HomeScreen() {
                 color={Colors.greenSecondary}
                 shadowColor={Colors.greenBg}
                 text="Point Santri"
+                onPress={() => navigation.replace("Stack", { screen: "PointSantri" })}
               />
               <ButtonHomeContent
                 color={Colors.greenBg}
                 shadowColor={Colors.greenSecondary}
                 text="Data Santri"
+                onPress={() => navigation.replace("Stack", { screen: "DataSantri" })}
               />
             </View>
           </View>
-          <View style={{ flex: 1 }}></View>
+          <View style={styles.carousel}>
+            <HaditsCarousel 
+            hadits="خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ" 
+            terjemahan="Sebaik-baik kalian adalah orang yang belajar Al-Qur`an dan mengajarkannya." 
+            />
+          </View>
         </View>
       </View>
     </LinearGradient>
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 44,
+    paddingBottom: screenHeight/13,
   },
   viewAtas: {
     flex: 1,
@@ -133,4 +145,12 @@ const styles = StyleSheet.create({
     top: 10,
     zIndex: 4,
   },
+  carousel: {
+    flex: 1,
+    // backgroundColor: "black",
+    justifyContent: "center",
+    // alignItems: "center",
+    paddingHorizontal: screenWidth/(375/37),
+    paddingBottom: screenHeight/(812/12),
+  }
 });

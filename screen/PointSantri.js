@@ -1,9 +1,9 @@
 import { Text, View,Pressable } from "react-native";
 
-export default function SetorHafalan({navigation}) {
+export default function PointSantri({navigation}) {
   return (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-      <Text>Setor Hafalan</Text>
+      <Text>Point Santri</Text>
       <Pressable onPress={() => navigation.replace("Main", { screen: "Beranda" })}>
         <Text>Kembali</Text>
       </Pressable>
