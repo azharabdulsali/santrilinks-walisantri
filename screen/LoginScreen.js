@@ -1,17 +1,6 @@
 import { View, Text, Pressable, StyleSheet, TextInput } from "react-native";
-import { useFonts } from "expo-font";
 
 export default function LoginScreen({ navigation }) {
-  const [fontsLoaded] = useFonts({
-    // "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
-    "Montserrat-SemiBold": require("../assets/fonts/Montserrat-SemiBold.ttf"),
-    // "ABeeZee-Regular": require("../assets/fonts/ABeeZee-Regular.ttf"),
-    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
-    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <Text>Loading...</Text>;
-  }
   return (
     <View style={styles.container}>
       <Text style={styles.textLogin}>Login</Text>
@@ -58,7 +47,7 @@ const styles = StyleSheet.create({
   textLogin: {
     color: "#000000",
     fontSize: 24,
-    fontFamily: "Poppins-Regular",
+    fontFamily: "Poppins_400Regular",
     textAlign: "center",
     marginTop: 74,
   },
@@ -69,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2FFE9",
     height: 38,
     fontSize: 12,
-    fontFamily: "Poppins-Medium",
+    fontFamily: "Poppins_500Medium",
   },
   button: {
     position: "absolute",
@@ -92,7 +81,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textButton: {
-    fontFamily: "Montserrat-SemiBold",
+    fontFamily: "Poppins_600SemiBold",
     fontSize: 14,
     color: "white",
   },
