@@ -4,7 +4,7 @@ export default function PointSantri({navigation}) {
   return (
     <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
       <Text>Point Santri</Text>
-      <Pressable onPress={() => navigation.navigate("Main", { screen: "Beranda" })}>
+      <Pressable onPress={() => navigation.replace("Main", { screen: "Beranda" })}>
         <Text>Kembali</Text>
       </Pressable>
     </View>

@@ -1,5 +1,4 @@
 import { View, Text, Pressable, StyleSheet, TextInput } from "react-native";
-
 export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>

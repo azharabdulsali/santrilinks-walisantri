@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
           <View style={styles.viewText1}>
             <Text style={styles.text1}>Assalamu’alaikum Syaifani</Text>
           </View>
-          <Pressable style={styles.buttonTebakAyat}>
+          <Pressable style={styles.buttonTebakAyat} onPress={() => navigation.navigate("Stack", { screen: "TebakAyat" })}>
             <Text style={styles.textButtonTebakAyat}>Mari tebak ayat</Text>
           </Pressable>
           <View style={styles.lingkaran}></View>
