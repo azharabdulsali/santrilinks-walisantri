@@ -15,7 +15,7 @@ export default function StackNavigator() {
       <Stack.Screen name="DataSantri" component={DataSantri} options={{ headerShown: false }}/>
       <Stack.Screen name="PointSantri" component={PointSantri} options={{ headerShown: false }}/>
       <Stack.Screen name="TebakAyat" component={TebakAyat} options={{ headerShown: false }}/>
-      <Stack.Screen name="TebakAyatScreen2" component={TebakAyatScreen2}/>
+      <Stack.Screen name="TebakAyatScreen2" component={TebakAyatScreen2} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
