@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { screenWidth, screenHeight } from "../constants/scale";
 import { Colors } from "../constants/colors";
 import { Picker } from "@react-native-picker/picker";
 import ButtonMulai from "../components/ButtonMulai";
 import ButtonBack from "../components/ButtonBack";
+import { juz } from "../constants/juzAndJumlahAyat";
 
-export default function TebakAyat({navigation}) {
-  const juz = Array.from({ length: 30 }, (_, index) => index + 1);
-  const [selectedDariJuz, setSelectedDariJuz] = useState();
-  const [selectedSampaiJuz, setSelectedSampaiJuz] = useState();
+export default function TebakAyat({ navigation }) {
+  const [selectedDariJuz, setSelectedDariJuz] = useState(null);
+  const [selectedSampaiJuz, setSelectedSampaiJuz] = useState(null);
+  const [isDisable, setIsDisable] = useState(true);
   const pickerRef = useRef();
 
   function open() {
@@ -19,10 +20,37 @@ export default function TebakAyat({navigation}) {
   function close() {
     pickerRef.current.blur();
   }
+
+  const handleMulai = () => {
+    navigation.navigate("TebakAyatScreen2", {
+      dariJuz: selectedDariJuz,
+      sampaiJuz: selectedSampaiJuz,
+    });
+  };
+  useEffect(() => {
+    isMulai();
+  },[selectedDariJuz, selectedSampaiJuz]);
+  const isMulai=()=>{
+    if (!(selectedDariJuz===null) && !(selectedSampaiJuz===null) && (selectedDariJuz <= selectedSampaiJuz)) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }
+  const handlePickerDariJuz = (itemValue) => {
+    setSelectedDariJuz(itemValue);
+    isMulai();
+  }
+  const handlePickerSampaiJuz = (itemValue) => {
+    setSelectedSampaiJuz(itemValue);
+    isMulai();
+  }
   return (
     <View style={styles.container}>
       <View style={styles.viewBack}>
-        <ButtonBack onPress={() => navigation.replace("Main", { screen: "Beranda" })}/>
+        <ButtonBack
+          onPress={() => navigation.goBack()}
+        />
       </View>
       <View style={styles.lingkaran}></View>
       <View>
@@ -48,15 +76,22 @@ export default function TebakAyat({navigation}) {
                 ref={pickerRef}
                 mode="dropdown"
                 selectedValue={selectedDariJuz}
-                onValueChange={(itemValue, itemIndex) => {
-                  setSelectedDariJuz(itemValue);
-                }}
+                onValueChange={handlePickerDariJuz}
                 itemStyle={{ color: "black" }}
-                style={{ height: 50, width: 150 , fontSize:20 , color:"black"}}
+                style={{ height: "auto", width: screenWidth / (375 / 121), fontSize: screenWidth / (375 / 14), color: "black" }}
               >
-                <Picker.Item label="......" value="disabled" style={{ fontSize: 14, fontFamily: "Poppins-Regular"}}></Picker.Item>
+                <Picker.Item
+                  label="......"
+                  value="disabled"
+                  style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                ></Picker.Item>
                 {juz.map((juz) => (
-                  <Picker.Item label={`Juz ${juz}`} value={juz} key ={juz} style={{ fontSize: 14, fontFamily: "Poppins-Regular" }}></Picker.Item>
+                  <Picker.Item
+                    label={`Juz ${juz.juz}`}
+                    value={juz.juz}
+                    key={juz.juz}
+                    style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                  ></Picker.Item>
                 ))}
               </Picker>
             </View>
@@ -65,24 +100,31 @@ export default function TebakAyat({navigation}) {
                 ref={pickerRef}
                 mode="dropdown"
                 selectedValue={selectedSampaiJuz}
-                onValueChange={(itemValue, itemIndex) => {
-                  setSelectedSampaiJuz(itemValue);
-                }}
+                onValueChange={handlePickerSampaiJuz}
                 // style={{ height: 50, width: 150 }}
                 itemStyle={{ color: "black" }}
-                style={{ height: 50, width: 150 , fontSize:20 , color:"black"}}
+                style={{ height: "auto", width: screenWidth / (375 / 121), fontSize: screenWidth / (375 / 14), color: "black" }}
               >
-                <Picker.Item label="......" value="disable" style={{ fontSize: 14, fontFamily: "Poppins-Regular"}}></Picker.Item>
+                <Picker.Item
+                  label="......"
+                  value="disable"
+                  style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                ></Picker.Item>
                 {juz.map((juz) => (
-                  <Picker.Item label={`Juz ${juz}`} value={juz} key ={juz} style={{ fontSize: 14, fontFamily: "Poppins-Regular"}}></Picker.Item>
-                ))}    
+                  <Picker.Item
+                    label={`Juz ${juz.juz}`}
+                    value={juz.juz}
+                    key={juz.juz}
+                    style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                  ></Picker.Item>
+                ))}
               </Picker>
             </View>
           </View>
         </View>
       </View>
       <View style={styles.viewButton}>
-      <ButtonMulai onPress={() => navigation.navigate("TebakAyatScreen2")}/>
+        <ButtonMulai onPress={() => handleMulai()} disabled={isDisable}  />
       </View>
     </View>
   );
@@ -91,6 +133,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingBottom: screenHeight / (812 / 17),
+    paddingTop: screenHeight / (812 / 10)
   },
   viewBack: {
     position: "absolute",
@@ -145,17 +189,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: screenWidth / (375 / 33),
-    marginLeft: screenWidth / (375 / 58),
-    // marginTop: screenHeight / (812 / 20),
-    
+    marginLeft: screenWidth / (375 / 52),
   },
-  pilihJuz:{
+  pilihJuz: {
     backgroundColor: Colors.greenBg,
     borderRadius: screenWidth / (375 / 10),
   },
-  viewButton:{
-    marginTop: screenHeight / (812 / 164),
+  viewButton: {
+    position: "absolute",
+    bottom: screenHeight / (812 / 57),
+    left: screenWidth / (375 / 115),
     display: "flex",
     alignItems: "center",
-  }
+  },
 });
