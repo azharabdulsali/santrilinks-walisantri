@@ -14,6 +14,8 @@ export default function TampilPerAyat(props) {
         style={[
           styles.textAyat,
           { color: isFirst === true ? "white" : "black" },
+          {fontFamily: isFirst === true ? "Inter_600SemiBold" : "Inter_500Medium"},
+          
         ]}
       >
         {ayat}
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
   },
   textAyat: {
     color: "white",
-    fontFamily: "Poppins_600SemiBold",
-    fontSize: screenWidth / (375 / 14),
+    // fontFamily: "Poppins_600SemiBold",
+    // fontSize: screenWidth / (375 / 14),
     lineHeight: screenHeight / (812 / 23),
   },
   textAyatKe: {
