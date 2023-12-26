@@ -16,7 +16,12 @@ export default function TebakAyatScreen2({ route, navigation }) {
   async function fetchData(randomJuz, calculatedOffset) {
     try {
       const data = await getJuzQuran(randomJuz, calculatedOffset);
-      setHasil(data.data.ayahs);
+      setHasil(data.data.ayahs.map((item) => {
+        if (item.numberInSurah === 1 && item.surah.number !== 1) {
+          return { ...item, text: item.text.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '') };
+        }
+        return item;
+      }));
     } catch (error) {
       console.log(error);
     }
