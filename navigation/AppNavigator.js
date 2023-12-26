@@ -5,6 +5,11 @@ import {
   Poppins_500Medium,
   Poppins_400Regular,
 } from "@expo-google-fonts/poppins";
+import {
+  Inter_600SemiBold,
+  Inter_500Medium,
+  Inter_400Regular,
+} from "@expo-google-fonts/inter";
 import * as SplashScreen from "expo-splash-screen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AuthNavigator from "./AuthNavigator";
@@ -22,6 +27,9 @@ export default function AppNavigation() {
     Poppins_600SemiBold,
     Poppins_500Medium,
     Poppins_400Regular,
+    Inter_600SemiBold,
+    Inter_500Medium,
+    Inter_400Regular,
   });
 
   const onLayoutRootView = useCallback(async () => {
