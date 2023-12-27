@@ -5,6 +5,7 @@ import DataSantri from "../screen/DataSantri";
 import PointSantri from "../screen/PointSantri";
 import TebakAyat from "../screen/TebakAyat";
 import TebakAyatScreen2 from "../screen/TebakAyatScreen2";
+import TebakAyatHasil from "../screen/TebakAyatHasil";
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
@@ -16,6 +17,7 @@ export default function StackNavigator() {
       <Stack.Screen name="PointSantri" component={PointSantri} options={{ headerShown: false }}/>
       <Stack.Screen name="TebakAyat" component={TebakAyat} options={{ headerShown: false }}/>
       <Stack.Screen name="TebakAyatScreen2" component={TebakAyatScreen2} options={{ headerShown: false }}/>
+      <Stack.Screen name="TebakAyatHasil" component={TebakAyatHasil} options={{ headerShown: true }}/>
     </Stack.Navigator>
   );
 }
