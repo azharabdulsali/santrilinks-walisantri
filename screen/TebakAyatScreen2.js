@@ -12,7 +12,8 @@ export default function TebakAyatScreen2({ route, navigation }) {
   const { dariJuz, sampaiJuz } = route.params;
   const [hasil, setHasil] = useState([]);
   const [gantiSoal, setGantiSoal] = useState(true);
-  const [salah,setSalah] = useState(0);
+  const [salah,setSalah] = useState([]);
+  // const [ayatDitekan, setAyatDitekan] = useState([]);
   async function fetchData(randomJuz, calculatedOffset) {
     try {
       const data = await getJuzQuran(randomJuz, calculatedOffset);
@@ -39,16 +40,28 @@ export default function TebakAyatScreen2({ route, navigation }) {
       setGantiSoal(false);
     }
   }, [gantiSoal]);
-  const handleOnPress = () => {
+  const handleGantiSoal = () => {
     setGantiSoal(true);
   };
-  const renderItem = ({ item, index }) => (
-    <TampilPerAyat
-      ayat={item.text}
-      ayatKe={item.numberInSurah}
-      isFirst={index === 0}
-    ></TampilPerAyat>
-  );
+  
+  const handleSalah = (item) =>{
+    const isAlreadySalah = salah.find((i) => i.id === item.number) 
+    if(!isAlreadySalah){
+      setSalah([...salah,{
+        id : item.number,
+        surah : item.surah.englishName,
+        ayat : item.numberInSurah,
+      }])
+    }
+    else {
+      setSalah(salah.filter((i) => i.id !== item.number));
+    }
+  }
+  const handleSelesai = () => {
+    navigation.navigate("TebakAyatHasil", {
+      salah : salah
+    });
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -73,7 +86,7 @@ export default function TebakAyatScreen2({ route, navigation }) {
               <View style={styles.viewGantiSoal}>
                 <Pressable
                   style={styles.buttonGantiSoal}
-                  onPress={handleOnPress}
+                  onPress={handleGantiSoal}
                 >
                   <Text style={styles.textGantiSoal}>Ganti Soal</Text>
                 </Pressable>
@@ -85,7 +98,15 @@ export default function TebakAyatScreen2({ route, navigation }) {
       <View style={{ marginTop: screenHeight / (812 / 10), flex: 1 }}>
         <FlatList
           data={hasil}
-          renderItem={renderItem}
+          renderItem={({ item, index }) => (
+            <TampilPerAyat
+            ayat={item.text}
+            ayatKe={item.numberInSurah}
+            isFirst={index === 0}
+            onPress={()=>handleSalah(item)}
+            isSalah={salah.some((i) => i.id === item.number)}
+          ></TampilPerAyat>
+          )}
           keyExtractor={(item) => item.number}
           ItemSeparatorComponent={() => (
             <View style={{ height: screenHeight / (812 / 10) }} />
@@ -93,11 +114,11 @@ export default function TebakAyatScreen2({ route, navigation }) {
         />
       </View>
       <View style={styles.viewBottom}>
-        <Pressable style={styles.buttonSelesai}>
+        <Pressable style={styles.buttonSelesai} onPress={handleSelesai}>
           <Text style={styles.textSelesai}>Selesai</Text>
         </Pressable>
         <View style={styles.viewSalah}>
-          <Text style={styles.textSalah}>Salah: {salah}</Text>
+          <Text style={styles.textSalah}>Salah: {salah.length}</Text>
         </View>
       </View>
     </View>
