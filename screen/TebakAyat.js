@@ -83,14 +83,14 @@ export default function TebakAyat({ navigation }) {
                 <Picker.Item
                   label="......"
                   value="disabled"
-                  style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                  style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
                 ></Picker.Item>
                 {juz.map((juz) => (
                   <Picker.Item
                     label={`Juz ${juz.juz}`}
                     value={juz.juz}
                     key={juz.juz}
-                    style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                    style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
                   ></Picker.Item>
                 ))}
               </Picker>
@@ -108,14 +108,14 @@ export default function TebakAyat({ navigation }) {
                 <Picker.Item
                   label="......"
                   value="disable"
-                  style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                  style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
                 ></Picker.Item>
                 {juz.map((juz) => (
                   <Picker.Item
                     label={`Juz ${juz.juz}`}
                     value={juz.juz}
                     key={juz.juz}
-                    style={{ fontSize: screenWidth / (375 / 14), fontFamily: "Poppins-Regular" }}
+                    style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
                   ></Picker.Item>
                 ))}
               </Picker>
