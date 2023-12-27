@@ -1,11 +1,11 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { screenWidth, screenHeight } from "../constants/scale";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,Pressable } from "react-native";
 import { Colors } from "../constants/colors";
 
 export default function TampilPerAyat(props) {
-  const { isFirst = false, ayat, ayatKe } = props;
+  const { isFirst = false, ayat, ayatKe, onPress, isSalah=false } = props;
 
   const textAyat = () => {
     return (
@@ -39,9 +39,11 @@ export default function TampilPerAyat(props) {
         </LinearGradient>
       )}
       {isFirst === false && (
-        <View style={[styles.container, styles.containerFalse]}>
+        <Pressable onPress={onPress}>
+        <View style={[styles.container, { backgroundColor: isSalah ? "#F3505080": Colors.greenBg }]}>
           <View style={{ justifyContent: "center" }}>{textAyat()}</View>
         </View>
+        </Pressable>
       )}
     </>
   );
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
   },
   textAyatKe: {
     color: "white",
-    fontFamily: "Poppins_600SemiBold",
+    fontFamily: "Inter_600SemiBold",
     fontSize: screenWidth / (375 / 14),
     borderRadius: 100,
   },
