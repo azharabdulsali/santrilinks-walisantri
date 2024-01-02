@@ -30,6 +30,7 @@ export default function AppNavigation() {
     Inter_600SemiBold,
     Inter_500Medium,
     Inter_400Regular,
+    "Arab": require("../assets/font/LPMQ_IsepMisbah.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
