@@ -2,7 +2,7 @@ import { Pressable, Text } from "react-native";
 import { screenWidth } from "../constants/scale";
 import { Colors } from "../constants/colors";
 
-export default function ButtonMulai({ navigation, onPress, disabled = false }) {
+export default function ButtonMulai({ navigation, onPress, disabled = false, width = 146, children="Mulai" }) {
   return (
     <Pressable
       disabled={disabled}
@@ -12,7 +12,7 @@ export default function ButtonMulai({ navigation, onPress, disabled = false }) {
         justifyContent: "center",
         alignItems: "center",
         padding: 10,
-        width: screenWidth / (375 / 146),
+        width: screenWidth / (375 / width),
         borderRadius: screenWidth / (375 / 10),
         opacity: disabled ? 0.5 : 1,
       }}
@@ -24,7 +24,7 @@ export default function ButtonMulai({ navigation, onPress, disabled = false }) {
           color: "white",
         }}
       >
-        Mulai
+        {children}
       </Text>
     </Pressable>
   );
