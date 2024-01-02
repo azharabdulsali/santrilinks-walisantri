@@ -29,37 +29,50 @@ export default function TebakAyat({ navigation }) {
   };
   useEffect(() => {
     isMulai();
-  },[selectedDariJuz, selectedSampaiJuz]);
-  const isMulai=()=>{
-    if (!(selectedDariJuz===null) && !(selectedSampaiJuz===null) && (selectedDariJuz <= selectedSampaiJuz)) {
+  }, [selectedDariJuz, selectedSampaiJuz]);
+  const isMulai = () => {
+    if (
+      !(selectedDariJuz === null) &&
+      !(selectedSampaiJuz === null) &&
+      selectedDariJuz <= selectedSampaiJuz
+    ) {
       setIsDisable(false);
     } else {
       setIsDisable(true);
     }
-  }
+  };
   const handlePickerDariJuz = (itemValue) => {
     setSelectedDariJuz(itemValue);
     isMulai();
-  }
+  };
   const handlePickerSampaiJuz = (itemValue) => {
     setSelectedSampaiJuz(itemValue);
     isMulai();
-  }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.viewBack}>
-        <ButtonBack
-          onPress={() => navigation.goBack()}
+        <ButtonBack onPress={() => navigation.goBack()} />
+      </View>
+      <View style={styles.kotak1}>
+        <Image
+          source={require("../assets/images/RectangleGreenSecondary.png")}
         />
       </View>
-      <View style={styles.lingkaran}></View>
-      <View>
+      <View style={styles.kotak2}>
         <Image
-          source={require("../assets/images/foto-alquran_tebak-ayat-screen.png")}
-          style={styles.foto}
+          source={require("../assets/images/RectangleGreenBg.png")}
         />
-        <View>
+      </View>
+      <View>
+        <View style={styles.viewJudul}>
           <Text style={styles.textJudul}>TebakAyat</Text>
+          <Image
+            source={require("../assets/images/foto-alquran_tebak-ayat-screen.png")}
+            style={styles.foto}
+          />
+        </View>
+        <View>
           <Text style={styles.textSubJudul}>
             Menebak ayat-ayat suci Al-Quran dengan hati penuh ketelitian. Mari
             bersama-sama mengasah pengetahuan dan kecintaan kita pada Firman-Nya
@@ -78,19 +91,30 @@ export default function TebakAyat({ navigation }) {
                 selectedValue={selectedDariJuz}
                 onValueChange={handlePickerDariJuz}
                 itemStyle={{ color: "black" }}
-                style={{ height: "auto", width: screenWidth / (375 / 121), fontSize: screenWidth / (375 / 14), color: "black" }}
+                style={{
+                  height: "auto",
+                  width: screenWidth / (375 / 121),
+                  fontSize: screenWidth / (375 / 14),
+                  color: "black",
+                }}
               >
                 <Picker.Item
                   label="......"
                   value="disabled"
-                  style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
+                  style={{
+                    fontSize: screenWidth / (375 / 12),
+                    fontFamily: "Poppins_400Regular",
+                  }}
                 ></Picker.Item>
                 {juz.map((juz) => (
                   <Picker.Item
                     label={`Juz ${juz.juz}`}
                     value={juz.juz}
                     key={juz.juz}
-                    style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
+                    style={{
+                      fontSize: screenWidth / (375 / 12),
+                      fontFamily: "Poppins_400Regular",
+                    }}
                   ></Picker.Item>
                 ))}
               </Picker>
@@ -103,19 +127,30 @@ export default function TebakAyat({ navigation }) {
                 onValueChange={handlePickerSampaiJuz}
                 // style={{ height: 50, width: 150 }}
                 itemStyle={{ color: "black" }}
-                style={{ height: "auto", width: screenWidth / (375 / 121), fontSize: screenWidth / (375 / 14), color: "black" }}
+                style={{
+                  height: "auto",
+                  width: screenWidth / (375 / 121),
+                  fontSize: screenWidth / (375 / 14),
+                  color: "black",
+                }}
               >
                 <Picker.Item
                   label="......"
                   value="disable"
-                  style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
+                  style={{
+                    fontSize: screenWidth / (375 / 12),
+                    fontFamily: "Poppins_400Regular",
+                  }}
                 ></Picker.Item>
                 {juz.map((juz) => (
                   <Picker.Item
                     label={`Juz ${juz.juz}`}
                     value={juz.juz}
                     key={juz.juz}
-                    style={{ fontSize: screenWidth / (375 / 12), fontFamily: "Poppins_400Regular" }}
+                    style={{
+                      fontSize: screenWidth / (375 / 12),
+                      fontFamily: "Poppins_400Regular",
+                    }}
                   ></Picker.Item>
                 ))}
               </Picker>
@@ -124,7 +159,23 @@ export default function TebakAyat({ navigation }) {
         </View>
       </View>
       <View style={styles.viewButton}>
-        <ButtonMulai onPress={() => handleMulai()} disabled={isDisable}  />
+        <ButtonMulai onPress={() => handleMulai()} disabled={isDisable} width={275}/>
+      </View>
+      <View>
+        <Image source={require("../assets/images/TebakAyat/RectangleBawahGreenBg.png")}
+          style={{
+            position: "absolute",
+            marginTop: screenHeight / (812 / 78),
+            zIndex: -1,
+          }}
+        />
+          <Image source={require("../assets/images/TebakAyat/RectangleBawahGreenSecondary.png")}
+            style={{
+              position: "absolute",
+              marginTop: screenHeight / (812 / 79),
+              zIndex: 2,
+            }}
+          />
       </View>
     </View>
   );
@@ -134,41 +185,51 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingBottom: screenHeight / (812 / 17),
-    paddingTop: screenHeight / (812 / 10)
+    paddingTop: screenHeight / (812 / 10),
   },
   viewBack: {
     position: "absolute",
     top: screenHeight / (812 / 27),
     left: screenWidth / (375 / 26),
   },
-  foto: {
-    width: screenWidth / (375 / 197),
-    height: screenHeight / (812 / 190),
-    marginLeft: screenWidth / (375 / 81),
-    marginTop: screenHeight / (812 / 59),
+  viewJudul: {
+    display: "flex",
+    flexDirection: "row",
+    columnGap: screenWidth / (375 / 26),
+
   },
-  lingkaran: {
-    width: screenWidth / (375 / 151),
-    height: screenWidth / (375 / 161),
-    borderRadius: screenWidth / (375 / 151) / 2,
-    backgroundColor: Colors.greenBg,
+  foto: {
+    width: screenWidth / (375 / 170),
+    height: screenHeight / (812 / 214),
+    marginTop: screenHeight / (812 / 37),
+  },
+  kotak1: {
     position: "absolute",
-    top: screenHeight / (812 / 46),
-    left: screenWidth / (375 / 124),
-    // marginLeft:screenWidth/(375/81),
+    top: screenHeight / (812 / 39.74),
+    right:0
+    // marginLeft: screenWidth / (375 / 193.6),
+  },
+  kotak2: {
+    position: "absolute",
+    right:0,
+    top: screenHeight / (812 / 35),
+    zIndex: -1,
   },
   textJudul: {
     fontFamily: "Poppins_600SemiBold",
-    fontSize: screenWidth / (375 / 24),
-    textAlign: "center",
+    fontSize: screenWidth / (375 / 40),
+    // textAlign: "center",
     color: Colors.greenPrimary,
+    marginTop: screenHeight / (812 / 100),
+    marginLeft: screenWidth / (375 / 48),
+    width: screenWidth / (375 / 126),
   },
   textSubJudul: {
     fontFamily: "Poppins_400Regular",
     fontSize: screenWidth / (375 / 12),
     textAlign: "center",
     paddingHorizontal: screenWidth / (375 / 50),
-    marginTop: screenHeight / (812 / 20),
+    marginTop: screenHeight / (812 / 57),
     opacity: 0.8,
     // color: Colors.greenPrimary
   },
@@ -177,7 +238,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: screenWidth / (375 / 107),
     marginLeft: screenWidth / (375 / 58),
-    marginTop: screenHeight / (812 / 66),
+    marginTop: screenHeight / (812 / 29),
   },
   textJuz: {
     fontFamily: "Poppins_400Regular",
@@ -196,10 +257,9 @@ const styles = StyleSheet.create({
     borderRadius: screenWidth / (375 / 10),
   },
   viewButton: {
-    position: "absolute",
-    bottom: screenHeight / (812 / 57),
-    left: screenWidth / (375 / 115),
+    marginTop: screenHeight / (812 / 71),
     display: "flex",
     alignItems: "center",
   },
+
 });

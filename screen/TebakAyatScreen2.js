@@ -1,10 +1,10 @@
 import { Text, View, Pressable, FlatList, StyleSheet } from "react-native";
 import { getJuzQuran } from "../services/alquranJuz.services";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import { juz } from "../constants/juzAndJumlahAyat";
 import TampilPerAyat from "../components/TampilPerAyat";
 import { screenHeight, screenWidth } from "../constants/scale";
-import { LinearGradient } from "expo-linear-gradient";
+import ButtonMulai from "../components/ButtonMulai";
 import { Colors } from "../constants/colors";
 import ButtonBack from "../components/ButtonBack";
 
@@ -13,6 +13,7 @@ export default function TebakAyatScreen2({ route, navigation }) {
   const [hasil, setHasil] = useState([]);
   const [gantiSoal, setGantiSoal] = useState(true);
   const [salah,setSalah] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // const [ayatDitekan, setAyatDitekan] = useState([]);
   async function fetchData(randomJuz, calculatedOffset) {
     try {
@@ -23,6 +24,7 @@ export default function TebakAyatScreen2({ route, navigation }) {
         }
         return item;
       }));
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +36,9 @@ export default function TebakAyatScreen2({ route, navigation }) {
           ? dariJuz
           : Math.floor(Math.random() * (sampaiJuz - dariJuz + 1)) + dariJuz;
       const calculatedOffset = Math.floor(
-        Math.random() * juz[randomJuz - 1].jumlahAyatKurang10
+        Math.random() * (juz[randomJuz - 1].jumlahAyat-11)
       );
+      setIsLoading(true);
       fetchData(randomJuz, calculatedOffset);
       setGantiSoal(false);
     }
@@ -65,11 +68,6 @@ export default function TebakAyatScreen2({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View>
-        <LinearGradient
-          colors={["#46A175", "#6DAD5C"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-        >
           <View style={{position: "absolute", top: screenHeight / (812 / 24), left: screenWidth / (375 / 27), zIndex: 3}}>
             <ButtonBack onPress={() => navigation.goBack()}></ButtonBack>
           </View>
@@ -93,36 +91,48 @@ export default function TebakAyatScreen2({ route, navigation }) {
               </View>
             </View>
           </View>
-        </LinearGradient>
       </View>
       <View style={{ marginTop: screenHeight / (812 / 10), flex: 1 }}>
-        <FlatList
-          data={hasil}
-          renderItem={({ item, index }) => (
-            <TampilPerAyat
-            ayat={item.text}
-            ayatKe={item.numberInSurah}
-            isFirst={index === 0}
-            onPress={()=>handleSalah(item)}
-            isSalah={salah.some((i) => i.id === item.number)}
-          ></TampilPerAyat>
-          )}
-          keyExtractor={(item) => item.number}
-          ItemSeparatorComponent={() => (
-            <View style={{ height: screenHeight / (812 / 10) }} />
-          )}
-        />
+      {isLoading ? (
+          <LoadingFallback />
+        ) : (
+          <FlatList
+            data={hasil}
+            renderItem={({ item, index }) => (
+              <TampilPerAyat
+                ayat={item.text}
+                ayatKe={item.numberInSurah}
+                isFirst={index === 0}
+                onPress={() => handleSalah(item)}
+                isSalah={salah.some((i) => i.id === item.number)}
+              />
+            )}
+            keyExtractor={(item) => item.number}
+            ItemSeparatorComponent={() => (
+              <View style={{ height: screenHeight / (812 / 11) }} />
+            )}
+          />
+        )}
       </View>
       <View style={styles.viewBottom}>
-        <Pressable style={styles.buttonSelesai} onPress={handleSelesai}>
-          <Text style={styles.textSelesai}>Selesai</Text>
-        </Pressable>
         <View style={styles.viewSalah}>
           <Text style={styles.textSalah}>Salah: {salah.length}</Text>
         </View>
+        {/* <Pressable style={styles.buttonSelesai} onPress={handleSelesai}>
+          <Text style={styles.textSelesai}>Selesai</Text>
+        </Pressable> */}
+        <ButtonMulai width={179} onPress={handleSelesai}>Selesai</ButtonMulai>
       </View>
     </View>
   );
+}
+
+function LoadingFallback() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <Text>Loading...</Text>
+    </View>
+  )
 }
 const styles = StyleSheet.create({
   container: {
@@ -131,11 +141,11 @@ const styles = StyleSheet.create({
     paddingBottom: screenHeight / (812 / 17),
   },
   judul: {
-    marginTop: screenHeight / (812 / 24),
+    marginTop: screenHeight / (812 / 16),
     fontSize: screenWidth / (375 / 20),
-    fontFamily: "Poppins_600SemiBold",
+    fontFamily: "Poppins_500Medium",
     textAlign: "center",
-    color: "#fff",
+    color: "#000",
   },
   viewSubJudul: {
     marginTop: screenHeight / (812 / 16),
@@ -146,22 +156,27 @@ const styles = StyleSheet.create({
     marginBottom: screenHeight / (812 / 20),
   },
   viewJuz: {
-    borderColor: "white",
-    borderWidth: screenWidth / (375 / 1),
+    // borderColor: "white",
+    // borderWidth: screenWidth / (375 / 1),
     borderRadius: screenWidth / (375 / 10),
-    width: screenWidth / (375 / 161),
+    width: screenWidth / (375 / 122),
     paddingVertical: screenWidth / (375 / 5),
     paddingHorizontal: screenWidth / (375 / 5),
+    backgroundColor: Colors.greenBg,
+    justifyContent: "center",
   },
   textJuz: {
     textAlign: "center",
-    color: "white",
+    color: "black",
     fontFamily: "Poppins_500Medium",
     fontSize: screenWidth / (375 / 14),
   },
   viewGantiSoal: {
-    backgroundColor: "white",
+    flex:1,
+    backgroundColor: Colors.greenPrimary,
     borderRadius: screenWidth / (375 / 10),
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonGantiSoal: {
     width: screenWidth / (375 / 137),
@@ -174,19 +189,19 @@ const styles = StyleSheet.create({
   textGantiSoal: {
     fontFamily: "Poppins_600SemiBold",
     fontSize: screenWidth / (375 / 14),
-    color: Colors.greenPrimary,
+    color: "white",
   },
   viewBottom: {
     display: "flex",
     flexDirection: "row",
     gap: screenWidth / (375 / 13),
-    paddingHorizontal: screenWidth / (375 / 85),
+    paddingHorizontal: screenWidth / (375 / 38),
     paddingTop: screenHeight / (812 / 17),
   },
   buttonSelesai:{
     padding: screenWidth / (375 / 10),
     width: screenWidth / (375 / 95),
-    borderColor: Colors.greenPrimary,
+    
     borderWidth: screenWidth / (375 / 2),
     borderRadius: screenWidth / (375 / 10),
   },
@@ -197,7 +212,7 @@ const styles = StyleSheet.create({
     fontFamily:"Poppins_600SemiBold",
   },
   viewSalah:{
-    backgroundColor:"#F3505080",
+    // backgroundColor:"#F3505080",
     padding: screenWidth / (375 / 10),
     borderRadius: screenWidth / (375 / 10),
     width: screenWidth / (375 / 95),
@@ -206,7 +221,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textSalah:{
-    color:"white",
+    // color:"white",
+    opacity:0.8,
     textAlign:"center",
     fontSize: screenWidth / (375 / 12),
     fontFamily:"Poppins_600SemiBold",
