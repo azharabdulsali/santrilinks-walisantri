@@ -161,18 +161,20 @@ export default function TebakAyat({ navigation }) {
       <View style={styles.viewButton}>
         <ButtonMulai onPress={() => handleMulai()} disabled={isDisable} width={275}/>
       </View>
-      <View>
+      <View style={{flex: 1}}>
         <Image source={require("../assets/images/TebakAyat/RectangleBawahGreenBg.png")}
           style={{
             position: "absolute",
-            marginTop: screenHeight / (812 / 78),
+            // marginTop: screenHeight / (812 / 78),
+            bottom:0,
             zIndex: -1,
           }}
         />
           <Image source={require("../assets/images/TebakAyat/RectangleBawahGreenSecondary.png")}
             style={{
               position: "absolute",
-              marginTop: screenHeight / (812 / 79),
+              // marginTop: screenHeight / (812 / 79),
+              bottom:0,
               zIndex: 2,
             }}
           />
@@ -184,7 +186,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingBottom: screenHeight / (812 / 17),
     paddingTop: screenHeight / (812 / 10),
   },
   viewBack: {
