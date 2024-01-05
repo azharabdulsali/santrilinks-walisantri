@@ -130,7 +130,7 @@ export default function TebakAyatScreen2({ route, navigation }) {
 function LoadingFallback() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <Text>Loading...</Text>
+      <Text style={{ color: "black" , fontFamily: "Poppins_500Medium", fontSize: screenWidth / (375 / 12)}}>Loading...</Text>
     </View>
   )
 }
