@@ -66,7 +66,9 @@ export default function TebakAyat({ navigation }) {
       </View>
       <View>
         <View style={styles.viewJudul}>
-          <Text style={styles.textJudul}>TebakAyat</Text>
+          <View style={styles.viewTextJudul}>
+            <Text style={styles.textJudul}>TebakAyat</Text>
+          </View>
           <Image
             source={require("../assets/images/foto-alquran_tebak-ayat-screen.png")}
             style={styles.foto}
@@ -202,13 +204,14 @@ const styles = StyleSheet.create({
   foto: {
     width: screenWidth / (375 / 170),
     height: screenHeight / (812 / 214),
-    marginTop: screenHeight / (812 / 37),
+    top: screenHeight / (812 / 37),
+    right: screenWidth / (375 / 4),
+    position: "absolute",
   },
   kotak1: {
     position: "absolute",
     top: screenHeight / (812 / 39.74),
     right:0
-    // marginLeft: screenWidth / (375 / 193.6),
   },
   kotak2: {
     position: "absolute",
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
     color: Colors.greenPrimary,
     marginTop: screenHeight / (812 / 100),
     marginLeft: screenWidth / (375 / 48),
-    width: screenWidth / (375 / 126),
+    width: screenWidth / (375 / 128),
   },
   textSubJudul: {
     fontFamily: "Poppins_400Regular",
