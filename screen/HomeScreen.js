@@ -16,12 +16,12 @@ export default function HomeScreen({ navigation }) {
     <LinearGradient
       colors={["#46A175", "#75AA50"]}
       start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
+      end={{ x: 1, y: 1 }} 
       style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.viewAtas}>
           <View style={styles.viewText1}>
-            <Text style={styles.text1}>Assalamu’alaikum Syaifani</Text>
+            <Text style={styles.text1}>Assalamu’alaikum Yanuar</Text>
           </View>
           <Pressable style={styles.buttonTebakAyat} onPress={() => navigation.navigate("Stack", { screen: "TebakAyat" })}>
             <Text style={styles.textButtonTebakAyat}>Mari tebak ayat</Text>
@@ -43,17 +43,17 @@ export default function HomeScreen({ navigation }) {
               <ButtonHomeContent
                 color={Colors.greenBg}
                 shadowColor={Colors.greenSecondary}
-                text="Setor Hafalan"
+                text="Laporan Hafalan"
                 onPress={() =>
-                  navigation.navigate("Stack", { screen: "SetorHafalan" })
+                  navigation.navigate("Stack", { screen: "LaporanHafalan" })
                 }
               />
               <ButtonHomeContent
                 color={Colors.greenSecondary}
                 shadowColor={Colors.greenBg}
-                text="Absensi Santri"
+                text="Laporan Absensi"
                 onPress={() =>
-                  navigation.navigate("Stack", { screen: "AbsensiSantri" })
+                  navigation.navigate("Stack", { screen: "LaporanAbsensi" })
                 }
               />
             </View>
@@ -67,15 +67,15 @@ export default function HomeScreen({ navigation }) {
               <ButtonHomeContent
                 color={Colors.greenSecondary}
                 shadowColor={Colors.greenBg}
-                text="Point Santri"
+                text="Laporan Point"
                 onPress={() =>
-                  navigation.navigate("Stack", { screen: "PointSantri" })
+                  navigation.navigate("Stack", { screen: "LaporanPoint" })
                 }
               />
               <ButtonHomeContent
                 color={Colors.greenBg}
                 shadowColor={Colors.greenSecondary}
-                text="Data Santri"
+                text="Sedekah Ikhlas"
                 onPress={() =>
                   navigation.navigate("Stack", { screen: "DataSantri" })
                 }

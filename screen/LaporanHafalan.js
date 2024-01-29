@@ -2,7 +2,7 @@ import { Text, View, StyleSheet,Pressable,Image, FlatList } from "react-native";
 import { Colors } from "../constants/colors";
 import { screenWidth, screenHeight } from "../constants/scale";
 
-export default function SetorHafalan({navigation}) {
+export default function LaporanHafalan({navigation}) {
   const dummy = [
     {
       nama: "Nasi Goreng",
@@ -58,11 +58,11 @@ export default function SetorHafalan({navigation}) {
     <View style={styles.container}>
       <Image source={require("../assets/images/SetoranHafalan/Rectangle.png")} style={styles.rectangle}/>
       <Image source={require("../assets/images/SetoranHafalan/Quran.png")} style={styles.quran}/>
-      <Image source={require("../assets/images/SetoranHafalan/statistik.svg")} style={styles.statistik}/>
+      {/* <Image source={require("../assets/images/SetoranHafalan/statistik.svg")} style={styles.statistik}/> */}
       <View style={styles.viewJudul}>
-        <Text style={styles.textJudul}>Setor Hafalan</Text>
+        <Text style={styles.textJudul}>{`Laporan \nHafalan`}</Text>
       </View>
-      <View style={styles.body}>
+      {/* <View style={styles.body}>
         <View style={styles.viewHeaderBody}>
           <Text style={styles.textHeaderBody}>Nama Santri</Text>
           <Text style={styles.textHeaderBody}>Setoran Terakhir</Text>
@@ -96,7 +96,7 @@ export default function SetorHafalan({navigation}) {
             showsVerticalScrollIndicator={false} 
           />
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -123,13 +123,13 @@ const styles = StyleSheet.create({
   viewJudul:{
     marginLeft: screenWidth / (375 / 176),
     marginTop: screenHeight / (812 / 84),
-    width: screenWidth / (375 / 162),
+    width: screenWidth / (375 / 180),
   },
   textJudul:{
     fontSize: screenWidth / (375 / 40),
     fontFamily: "Poppins_600SemiBold",
     color: Colors.greenPrimary,
-    textAlign:"right"
+    textAlign:"left"
   },
   body:{
     flex: 1,
